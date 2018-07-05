@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8"/>
+<title>Welcome</title>
+</head>
+<body>
+	<h1>Hello <span th:text="${#authentication.principal.name}"></span></h1>
+	<img th:src="'http://graph.facebook.com/__${#authentication.principal.facebookId}__/picture?type=large'"/>
+	<h2 sec:authorize="isAuthenticated()">
+        You are now successfully login with Facebook.
+    </h2>
+    <p sec:authentication="principal"></p>
+    <p th:text="${#authentication}"></p>
+    
+    <a style="color:red" href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+    
+    <script type="text/javascript">
+    	// Use for remove #_=_ from URL when login success
+	    if (window.location.hash == "#_=_") {
+	    	history.replaceState ? history.replaceState(null, null, window.location.href.split('#')[0]) : window.location.hash = '';
+	    }  
+    </script>
+</body>
+</html>

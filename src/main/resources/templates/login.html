@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<style>
+	.fb {
+		width: 180px;
+		height: 30px;
+		background-color: #4267b2;
+		border: 0px;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px;
+	}
+</style>
+</head>
+<body>
+	<h1>Login with Facebook</h1>
+	<h2 th:if="${param.logout}">You have been logged out</h2>
+	<form action="/facebook/signin" method="GET">
+		<input class="fb" type="submit" value="Login using Facebook" />
+	</form>
+</body>
+</html>
